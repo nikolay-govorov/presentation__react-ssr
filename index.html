@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Серверный рендеринг React | Говоров Николай</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="node_modules/@shower/ribbon/styles/styles.css">
+        <style>
+            .shower {
+                --slide-ratio: calc(16 / 9);
+            }
+
+            .visuallyhidden {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                margin: -1px;
+                padding: 0;
+                overflow: hidden;
+                border: 0;
+                clip: rect(0 0 0 0);
+            }
+            
+            .small {
+                font-size: .75em;
+            }
+
+            /* list */
+            .list li {
+                display: flex;
+                align-items: baseline;
+            }
+
+            .list li > *:first-child{
+                margin-right: .75em;
+            }
+        </style>
+    </head>
+    <body class="shower list">
+        <header class="caption">
+            <h1>Серверный рендеринг React</h1>
+            <p><a href="https://govorov.online">Говоров Николай</a> из <a href="https://semrush.com">SEMrush</a></p>
+        </header>
+
+        <section id="welcome">
+            <div class="cover">
+                <h2>Серверный рендеринг React</h2>
+    
+                <p>Говорит и показывает Говоров Николай из <a href="https://semrush.com">SEMrush</a></p>
+            </div>
+
+            <style>
+                #welcome .cover {
+                    width: 60%;
+                }
+            </style>
+        </section>
+
+        <section id="what-is-react">
+            <div class="cover">
+                <h2>React — шаблонизатор</h2>
+    
+                <p class="next">Написанный на <b>JavaScript</b></p>
+            </div>
+
+            <style>
+                #what-is-react .cover {
+                    width: 60%;
+                }
+            </style>
+        </section>
+
+        <section id="react-target">
+            <h2 class="visuallyhidden">Структура React компонента</h2>
+
+            <img src="./images/react-target.svg" alt="Схема содержимого React-компонента">
+    
+            <style>
+                #react-target img {
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    height: 100%;
+                    padding: 5vh;
+                    box-sizing: border-box;
+                    transform: translate(-50%, 0);
+                }
+            </style>
+        </section>
+
+        <section>
+            <h2>ReactDOMServer</h2>
+
+            <div>
+                <pre>
+                    <code>const { renderToString } = require('react-dom/server');</code>
+                    <code> </code>
+                    <code>const el = &lt;div&gt;Hello world&lt;/div&gt;;</code>
+                    <code> </code>
+                    <code>const str = renderToString(el);</code>
+                    <code>console.log(str) // => "&lt;div&gt;Hello world&lt;/div&gt;"</code>
+                </pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>Что ещё нужно сделать:</h2>
+
+            <ul>
+                <li>множественные сборки;</li>
+                <li>гидрация на клиенте;</li>
+                <li>изоморная загрузка данных;</li>
+                <li>code splitting.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Готовые обёртки</h2>
+
+            <p class="small">
+                Удобно использовать для быстрого старта, настройки сборок, но может не хватить гибкости.
+            </p>
+
+            <ul class="list">
+                <li>
+                    <a href="https://github.com/zeit/next.js">Next.js</a>
+                    
+                    <p class="small">Быстро просто популярно</p>
+                </li>
+                <li>
+                    <a href="https://github.com/jaredpalmer/razzle">Razzle</a>
+
+                    <p class="small">Сложнее, но гибко</p>
+                </li>
+                <li>
+                    <a href="https://github.com/paypal/react-engine">React engine</a>
+
+                    <p class="small">Удобный, но <b>умер</b></p>
+                </li>
+
+                <li>
+                    <a href="https://www.gatsbyjs.org/">Gatsby</a>
+                    
+                    <p class="small">Удобный популярный генератор статических сайтов</p>
+                </li>
+
+                <li>
+                    <a href="https://github.com/ctrlplusb/react-universally">React universally</a>
+                    
+                    <p class="small">Starter kit со всем что может понадобиться</p>
+                </li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2 class="cover">Изоморфные приложения</h2>
+        </section>
+
+        <section>
+            <h2 class="visuallyhidden">Схема работы изоморфных приложений</h2>
+
+            <img src="./images/isomorphic-image-scheme.png" alt="Схема работы изоморфных приложегний" class="cover">
+        </section>
+
+        <section>
+            <h2>Зачем это может быть нужно:</h2>
+
+            <ul>
+                <li>скорость загрузки;</li>
+                <li>поисковая оптимизация;</li>
+                <li>переиспользование шаблонов;</li>
+                <li>фолебки для старых браузеров.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>О чём стоит помнить:</h2>
+
+            <ul>
+                <li>возрастает нагрузка на сервер;</li>
+                <li>на сервере нет `window`, не работает jQuery;</li>
+                <li>качественно усложняется архитектура;</li>
+                <li>XSS выполняет и на сервере;</li>
+                <li>многие данные можно хранить только в куках.</li>
+            </ul>
+        </section>
+
+        <!-- Сборка -->
+        <section>
+            <h2>Обёртки для сборки:</h2>
+
+            <ul>
+                <li>
+                    <a href="https://www.npmjs.com/package/webpack-isomorphic-tools">Webpack isomorphic tools</a>
+                </li>
+                <li>
+                    <a href="https://www.npmjs.com/package/universal-webpack">Universal webpack</a>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <pre>
+                <code>const merge = require('webpack-merge');</code>
+                <code> </code>
+                <code>const createConfig =</code>
+                <code>  (target, custom) => merge({ ... }, custom); </code>
+                <code> </code>
+                <code>module.exports = [</code>
+                <code>  createConfig('client', { ... }),</code>
+                <code>  createConfig('server', { ... }),</code>
+                <code>];</code>
+            </pre>
+        </section>
+
+        <!-- Data fetching -->
+
+        <!-- Code splitting -->
+
+        <!-- Лендинги -->
+        <section>
+            <h2 class="cover">Лендинги</h2>
+        </section>
+
+        <section id="gatsby">
+            <h2>Gatsby</h2>
+            
+            <ul>
+                <li>
+                    <b>React компоненты из палитры React компонентов</b>
+                </li>
+                <li>Статический сайт работает быстро</li>
+                <li>Плагины на любой вкус</li>
+                <li>Генерация по заданным данным</li>
+            </ul>
+    
+            <img src="./images/gatsby.svg" alt="Схема работы Gatsby">
+    
+            <style>
+                #gatsby img {
+                    position: absolute;
+                    right: 10%;
+                    bottom: 10%;
+                    height: 60%;
+                }
+            </style>
+        </section>
+
+        <section>
+            <h2>Просто рендерите html на сервере</h2>
+    
+            <pre>
+                <code>http.createServer((_, response) => {</code>
+                <code>    const app = renderToString(&lt;App />);</code>
+                <code> </code>
+                <code>    response.end(</code>
+                <code>      `&lt;body&gt;&lt;div id="root">${app}&lt;/div&gt;&lt;/body&gt;`;</code>
+                <code>    );</code>
+                <code>});</code>
+            </pre>
+        </section>
+
+        <!-- Вставка в легаси -->
+        <section>
+            <h2 class="cover">Через внешний бекенд</h2>
+        </section>
+
+        <section>
+            <img class="cover" src="./images/legacy.svg" alt="" width="80%">
+        </section>
+
+        <section>
+            <h2>Инструменты:</h2>
+            
+            <ul>
+                <li><a href="https://github.com/airbnb/hypernova">hypernova;</a></li>
+                <li><a href="https://github.com/markfinger/python-react">python-react.</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <pre>
+                <code>&lt;link rel="stylesheet" type="text/css" href="/navbar.css"&gt;</code>
+                <code> </code>
+                <code>&lt;div id="root-navbar"&gt;${renderToString(&lt;Navbar /&gt;)}&lt;/div&gt;</code>
+                <code> </code>
+                <code>&lt;script&gt;</code>
+                <code>  (window.SSR_PROPS = {})['navbar'] =</code>
+                <code>      JSON.parse('${JSON.stringify(props)}');</code>
+                <code>&lt;/script&gt;</code>
+                <code>&lt;script src="/navbar.js"&gt;&lt;/script&gt;</code>
+            </pre>
+        </section>
+
+        <!-- почему SSR делает архитектуру лучше -->
+        <section>
+            <h2>SSR делает архитектуру лучше</h2>
+
+            <ul>
+                <li>вынуждает держать логику отдельно от UI;</li>
+                <li>помогает пеереиспользовать палитру вообще везде;</li>
+                <li>принуждает использовать DI для работы в нескольких окружениях</li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2>Итого:</h2>
+            
+            <ul>
+                <li>React можно эффективно рендерить на сервере</li>
+                <li>Но это сложнее</li>
+                <li>Можно генерировать статику из React палитры</li>
+                <li>Можно постепенно приносить React+SSR в большой бекенд</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Говоров Николай из <a href="https://semrush.com">SEMrush</a></h2>
+
+            <ul class="not-next">
+                <li>
+                    <a href="https://govorov.online">govorov.online</a>
+                </li>
+
+                <li>
+                    <a href="https://govorov.online">me@govorov.online</a>
+                </li>
+
+                <li>
+                    ВКонтатке: <a href="https://vk.com/nikolay_govorov">/nikolay_govorov</a>
+                </li>
+
+                <li>
+                    Twitter: <a href="https://twitter.com/govorov_n">/govorov_n</a>
+                </li>
+
+                <li>
+                    Telegram: <a href="https://t.me/nikolay_govorov">/nikolay_govorov</a>
+                </li>
+
+                <li>
+                    GitHub: <a href="https://github.com/nikolay-govorov">/nikolay-govorov</a>
+                </li>
+            </ul>
+        </section>
+
+        <footer class="badge" role="contentinfo">
+            <a href="https://github.com/nikolay-govorov/presentation__react-ssr">Fork me on GitHub</a>
+        </footer>
+
+        <div class="progress"></div>
+
+        <script>
+            document.querySelectorAll('body > section').forEach(slide => {
+                slide.classList.add('slide');
+            });
+
+            document.querySelectorAll('.slide ul:not(.not-next) > li:not(:first-child)')
+                .forEach(item => {
+                    item.classList.add('next');
+                });
+        </script>
+        <script src="node_modules/shower-core/shower.min.js"></script>
+    </body>
+</html>
