@@ -6,6 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="shower/themes/ribbon/styles/styles.css">
         <style>
+            h3 {
+                margin: 0;
+                color: var(--color-grey);
+            }
+
             .shower {
                 --slide-ratio: calc(16 / 9);
             }
@@ -23,6 +28,10 @@
             
             .small {
                 font-size: .75em;
+            }
+
+            .large-cover {
+                width: 60%;
             }
 
             /* list */
@@ -57,23 +66,19 @@
         </section>
 
         <section id="what-is-react">
-            <div class="cover">
-                <h2>React — шаблонизатор</h2>
-    
-                <p class="next">Написанный на <b>JavaScript</b></p>
-            </div>
+            <div class="large-cover cover">
+                <h2>React — библиотека для UI</h2>
 
-            <style>
-                #what-is-react .cover {
-                    width: 60%;
-                }
-            </style>
+                <p class="next">Написанная на <b>JavaScript</b></p>
+                
+                <p class="next">Может работать там где есть JavaScript</p>
+            </div>
         </section>
 
         <section id="react-target">
             <h2 class="visuallyhidden">Структура React компонента</h2>
 
-            <img src="./images/react-target.svg" alt="Схема содержимого React-компонента">
+            <img src="./images/react-target.svg" alt="Структура React-компонента">
     
             <style>
                 #react-target img {
@@ -86,32 +91,6 @@
                     transform: translate(-50%, 0);
                 }
             </style>
-        </section>
-
-        <section>
-            <h2>ReactDOMServer</h2>
-
-            <div>
-                <pre>
-                    <code>const { renderToString } = require('react-dom/server');</code>
-                    <code> </code>
-                    <code>const el = &lt;div&gt;Hello world&lt;/div&gt;;</code>
-                    <code> </code>
-                    <code>const str = renderToString(el);</code>
-                    <code>console.log(str) // => "&lt;div&gt;Hello world&lt;/div&gt;"</code>
-                </pre>
-            </div>
-        </section>
-
-        <section>
-            <h2>Что ещё нужно сделать:</h2>
-
-            <ul>
-                <li>множественные сборки;</li>
-                <li>гидрация на клиенте;</li>
-                <li>изоморная загрузка данных;</li>
-                <li>code splitting.</li>
-            </ul>
         </section>
 
         <section>
@@ -151,7 +130,68 @@
                 </li>
             </ul>
         </section>
+
+        <section>
+            <h2>Могут манипулировать React объектами</h2>
+
+            <div class="columns two">
+                <div>
+                    <h3>react-dom</h3>
+                    
+                    <p class="small">
+                        <span>Строит DOM дерево из React компонента</span>
+                        <span>Требует DOM API</span>
+                    </p>
+
+                    <ul class="not-next">
+                        <li>render()</li>
+                        <li>hydrate()</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>react-dom/server</h3>
+                    
+                    <p class="small">
+                        <span>Превращает React компонент в строку</span>
+                        <span>Только JS Core</span>
+                    </p>
+
+                    <ul class="not-next">
+                        <li>renderToString()</li>
+                        <li>renderToStaticMarkup()</li>
+                        <li>renderToNodeStream()</li>
+                        <li>renderToStaticNodeStream()</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
         
+        <section>
+            <h2>Трансляция React в строку</h2>
+
+            <pre>
+                <code>const { renderToString } = require('react-dom/server');</code>
+                <code> </code>
+                <code>const el = &lt;div&gt;Hello world&lt;/div&gt;;</code>
+                <code> </code>
+                <code>const str = renderToString(el);</code>
+                <code>console.log(str)</code>
+                <code>// => "&lt;div data-reactroot=""&gt;Hello world&lt;/div&gt;"</code>
+            </pre>
+        </section>
+
+        <section>
+            <h2>Что ещё нужно сделать:</h2>
+
+            <ul>
+                <li>множественные сборки;</li>
+                <li>гидрация на клиенте;</li>
+                <li>изоморфная загрузка данных;</li>
+                <li>code splitting.</li>
+            </ul>
+        </section>
+
         <section>
             <h2 class="cover">Изоморфные приложения</h2>
         </section>
@@ -169,7 +209,7 @@
                 <li>скорость загрузки;</li>
                 <li>поисковая оптимизация;</li>
                 <li>переиспользование шаблонов;</li>
-                <li>фолебки для старых браузеров.</li>
+                <li>фолбеки для старых браузеров.</li>
             </ul>
         </section>
 
@@ -177,10 +217,10 @@
             <h2>О чём стоит помнить:</h2>
 
             <ul>
-                <li>возрастает нагрузка на сервер;</li>
+                <li>растёт нагрузка на сервер;</li>
                 <li>на сервере нет `window`, не работает jQuery;</li>
                 <li>качественно усложняется архитектура;</li>
-                <li>XSS выполняет и на сервере;</li>
+                <li>XSS будет и на сервере;</li>
                 <li>многие данные можно хранить только в куках.</li>
             </ul>
         </section>
@@ -214,8 +254,116 @@
         </section>
 
         <!-- Data fetching -->
+        <section>
+            <div class="cover">
+                <h2>Куки. Угу, снова</h2>
+
+                <p>Необходимо общее хранилище между клиентом и сервером</p>
+            </div>
+        </section>
+
+        <section>
+            <p><code>cookies.js</code></p>
+
+            <script class="small" type="text/jsx">
+                import React, { useContext } from 'react';
+
+                export const CookiesContext = React.createContext('cookies');
+
+                export function useCookie(name) {
+                  const manager = useContext(CookiesContext);
+
+                  return [manager.get(name), manager.set.bind(name)];
+                }
+            </script>
+        </section>
+
+        <section>
+            <p><code>client.entry.js</code></p>
+
+            <script class="small" type="text/jsx">
+                class ClientCookieManager extends CookieManager() {
+                    get() { /* ... */ }
+                    set() { /* ... */ }
+                }
+    
+                function App() {
+                    return (
+                        <CookiesContext.Provider value={ClientCookieManager}>
+                            <App />
+                        </CookiesContext.Provider>
+                    );
+                }
+            </script>
+        </section>
+
+        <section>
+            <p><code>server.entry.js</code></p>
+
+            <script class="small" type="text/jsx">
+                class ServerCookieManager extends CookieManager() {
+                    get() { /* ... */ }
+                    set() { /* ... */ }
+                }
+    
+                function App() {
+                    return (
+                        <CookiesContext.Provider value={ServerCookieManager}>
+                            <App />
+                        </CookiesContext.Provider>
+                    );
+                }
+            </script>
+        </section>
+        
+        <section>
+            <p class="small"><code>app.js</code></p>
+
+            <script class="small" type="text/jsx">
+                function App() {
+                    const [cookie, setCookie] = useCookie('cookie-notification');
+
+                    if (cookie) { return null }
+
+                    return (
+                        <button onClick={() => setCookie(true)}>Accept</button>
+                    );
+                }
+            </script>
+        </section>
 
         <!-- Code splitting -->
+        <section>
+            <h2>Code splitting</h2>
+            
+            <p class="small"><code>import('./component.js');</code> на сервере работать не будет — используйте <a href="https://github.com/jamiebuilds/react-loadable#------------server-side-rendering">React Loadable</a>
+            </p>
+            
+            <div class="columns two next" style="position: absolute; bottom: -14%; left: -8%; transform: scale(0.65)">
+                <pre>
+                    <code>import Loadable from 'react-loadable';</code>
+                    <code> </code>
+                    <code>const LoadableComponent = Loadable({</code>
+                    <code>  loader: () => import('./my-component'),</code>
+                    <code>  // ... other options</code>
+                    <code>});</code>
+                    <code> </code>
+                    <code>export default function App() {</code>
+                    <code>  return &lt;LoadableComponent /&gt;</code>
+                    <code>}</code>
+                </pre>
+    
+                <div>
+                    <pre>
+                        <code>Loadable.preloadAll().then(() => {</code>
+                        <code>  app.listen(3000, () => {</code>
+                        <code>    console.log('Running on localhost:3000');</code>
+                        <code>  });</code>
+                        <code>});</code>
+                    </pre>
+                </div>
+            </div>
+        </section>
 
         <!-- Лендинги -->
         <section>
@@ -309,6 +457,7 @@
             <ul>
                 <li>React можно эффективно рендерить на сервере</li>
                 <li>Но это сложнее</li>
+                <li>Код всё ещё можно дробить на модули</li>
                 <li>Можно генерировать статику из React палитры</li>
                 <li>Можно постепенно приносить React+SSR в большой бекенд</li>
             </ul>
@@ -359,6 +508,37 @@
                 .forEach(item => {
                     item.classList.add('next');
                 });
+
+            document.querySelectorAll('script[type="text/jsx"]').forEach((block) => {
+                const value = block.innerHTML;
+                const container = document.createElement('pre');
+
+                ['id', 'class'].forEach(name => {
+                    container.setAttribute(name, block.getAttribute(name));
+                });
+
+                block.replaceWith(container);
+                
+                value
+                    .split('\n')
+                    .slice(1, -1)
+                    .map((str, _, all) => {
+                        if (str === '') {
+                            return ' '
+                        }
+
+                        return str.substr(all[0].length - all[0].trimStart().length);
+                    })
+                    .map(line => {
+                        const lineContainer = document.createElement('code');
+                        lineContainer.textContent = line;
+
+                        return lineContainer;
+                    })
+                    .forEach((line) => {
+                        container.append(line);
+                    });
+            })
         </script>
         <script src="shower/shower.min.js"></script>
     </body>
